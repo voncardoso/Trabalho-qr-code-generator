@@ -11,6 +11,7 @@ import { Admistrador } from "./Pages/Admintrador";
 import { getFirestore } from "firebase/firestore";
 import { QRcode1 } from "./Pages/QRcode1";
 import { User } from "./Pages/User/User";
+import { Register } from "./Pages/Register";
 
 function App() {
   firebase.initializeApp(firebaseConfig);
@@ -23,6 +24,7 @@ function App() {
         <UserStorage>
           <Routes>
             <Route end path="/" element={<Login />} />
+            <Route end path="/register" element={<Register />} />
             <Route
               path="/dashboard"
               element={

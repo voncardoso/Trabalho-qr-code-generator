@@ -2,12 +2,16 @@ import { useState } from "react";
 import { useContext } from "react";
 import { UserContext } from "../../Context/useContext";
 import { Container } from "./style";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
-import backgroungLogin from "../../assets/imagem-festa-tela-login.png";
+import backgroungLogin from "../../assets/iamgem-register.jpg";
 import { Eye, EyeSlash } from "phosphor-react";
 
-export function Login() {
+export function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [login, setLogin] = useState(null);
@@ -24,13 +28,13 @@ export function Login() {
     event.preventDefault();
     setLogin(true);
     const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, password)
+    createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
         if (user) {
-          window.localStorage.setItem("login", true);
-          navigate("/dashboard");
+          window.alert("Usuario cadastrado");
+          navigate("/");
           setLogin(false);
         }
         // ...
@@ -45,9 +49,12 @@ export function Login() {
 
   return (
     <Container>
+      <div className="containerImg">
+        <img src={backgroungLogin} alt="" />
+      </div>
       <form onSubmit={handleSubmit}>
         {error ? <div className="error">Email ou senha está inválido</div> : ""}
-        <h1>Login</h1>
+        <h1>Cadastra-se</h1>
         <div>
           <label htmlFor="">Email</label>
           <input
@@ -83,21 +90,16 @@ export function Login() {
           )}
         </div>
         {login ? (
-          <button disabled style={{ background: "#70B6F2" }}>
-            Entrando...
+          <button disabled style={{ background: "rgb(245, 198, 28)" }}>
+            Cadastrando...
           </button>
         ) : (
-          <button>Login</button>
+          <button>Cadastrar</button>
         )}
-
         <p>
-          Não possui uma conta? <Link to="register">Crie uma agora!</Link>
+          Voltar para o <Link to="/">login</Link>
         </p>
       </form>
-
-      <div className="containerImg">
-        <img src={backgroungLogin} alt="" />
-      </div>
     </Container>
   );
 }

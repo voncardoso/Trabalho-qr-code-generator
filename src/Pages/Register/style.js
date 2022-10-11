@@ -67,7 +67,7 @@ export const Container = styled.section`
     }
 
     button {
-      background: var(--blue-300);
+      background: rgb(245, 198, 28);
       border-radius: 10px;
       border: transparent;
       padding: 10px 0;
