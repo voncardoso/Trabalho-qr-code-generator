@@ -32,19 +32,8 @@ export const UserStorage = ({ children }) => {
 
   const festa = window.localStorage.getItem("evento");
   console.log(festa)
-  useEffect(() => {
-    async function getIngressos() {
-      const usersCollectionRef = collection(db, festa);
-      const order = query(usersCollectionRef, orderBy("count", "asc"));
-      const querySnapshot = await getDocs(order);
-      //const order = query(querySnapshot, orderBy("count", "asc"));
-      setDataEvento(querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    }
-    setModify(false);
-    setLoadingAnimaçao(false);
-    getIngressos();
-  }, []);
-  console.log("data",dataEvento)
+  
+
   return (
     <UserContext.Provider
       value={{ data, modify, setModify, loadingAnimaçao, setLoadingAnimaçao, evento, dataEvento }}

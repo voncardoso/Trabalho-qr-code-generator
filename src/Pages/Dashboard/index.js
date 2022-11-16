@@ -9,12 +9,13 @@ import {
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../Context/useContext";
 import { db } from "../../Config/config";
-import { doc, updateDoc } from "firebase/firestore";
+import { collection, doc, getDocs, orderBy, query, updateDoc } from "firebase/firestore";
 import { LoadingAnimacao } from "../../components/Loadign/loading";
 
 export function Dashboard() {
-  const { data, setModify, loadingAnimaçao, dataEvento } = useContext(UserContext);
+  const { data, setModify, loadingAnimaçao, modify } = useContext(UserContext);
   const [search, setSearch] = useState("");
+  const [dataEvento, setDataEvento] = useState([]);
   const [filteredRoad, setFilteredRoad] = useState([]);
   let data1 = [];
   // numero de item por pagina
@@ -22,7 +23,20 @@ export function Dashboard() {
   // escolher qual pagina
   const [currentPage, setCurrentPerPage] = useState(0);
   const [loading, setLoading] = useState(false);
-  console.log(dataEvento)
+
+  const festa = window.localStorage.getItem("evento");
+  useEffect(() => {
+    async function getIngressos() {
+      const usersCollectionRef = collection(db, festa);
+      const order = query(usersCollectionRef, orderBy("count", "asc"));
+      const querySnapshot = await getDocs(order);
+      //const order = query(querySnapshot, orderBy("count", "asc"));
+      setDataEvento(querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    }
+    setModify(false);
+    getIngressos();
+  }, []);
+
   if (dataEvento) {
     dataEvento.map((rodovia) => {
       data1.push(rodovia);
