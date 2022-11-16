@@ -29,9 +29,6 @@ export const UserStorage = ({ children }) => {
     setLoadingAnimaçao(false);
     getIngressos();
   }, [modify]);
-
-  const festa = window.localStorage.getItem("evento");
-  console.log(festa)
   
 
   return (

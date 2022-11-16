@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { doc, updateDoc } from "firebase/firestore";
+import { collection, doc, getDocs, orderBy, query, updateDoc } from "firebase/firestore";
 import { db } from "../../Config/config";
 import { QrReader } from "react-qr-reader";
 import { UserContext } from "../../Context/useContext";
@@ -13,6 +13,20 @@ export function QRcode1() {
   const [confirmQrCode, setConfirmQrCode] = useState("none");
   const [error, setError] = useState("none");
   const [errorStyle, setErrorStyle] = useState("");
+  const [dataEvento, setDataEvento] = useState([]);
+  const festa = window.localStorage.getItem("evento");
+
+  useEffect(() => {
+    async function getIngressos() {
+      const usersCollectionRef = collection(db, festa);
+      const order = query(usersCollectionRef, orderBy("count", "asc"));
+      const querySnapshot = await getDocs(order);
+      //const order = query(querySnapshot, orderBy("count", "asc"));
+      setDataEvento(querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    }
+    setModify(false);
+    getIngressos();
+  }, []);
 
   useEffect(() => {
     function VerifyNull() {
@@ -22,7 +36,7 @@ export function QRcode1() {
       }
     }
 
-    let veryfyTicktesConfirm = data.filter((item) =>
+    let veryfyTicktesConfirm = dataEvento.filter((item) =>
       item.count.toString().includes(+dataQrcode)
     );
 
@@ -50,7 +64,7 @@ export function QRcode1() {
   }, [dataQrcode]);
 
   async function verifyQrCode(id) {
-    const washingtonRef = doc(db, "tickets", id);
+    const washingtonRef = doc(db, festa, id);
     try {
       await updateDoc(washingtonRef, {
         active: true,

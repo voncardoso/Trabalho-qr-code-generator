@@ -1,15 +1,16 @@
 import styled from "styled-components";
 
 export const Container = styled.header`
-  height: 220px;
+  margin-bottom: 148px;
   display: flex;
   flex-direction: column;
   width: 100%;
-
+  background: var(--blue-400);
   nav {
+    max-width: 1600px;
     width: 100%;
     display: flex;
-    background: var(--blue-400);
+
     margin: 0 auto;
     padding: 20px 30px;
     justify-content: space-between;

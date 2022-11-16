@@ -15,6 +15,9 @@ import {
   deleteDoc,
   doc,
   updateDoc,
+  orderBy,
+  query,
+  getDocs,
 } from "firebase/firestore";
 import { db } from "../../Config/config";
 import { useContext, useEffect, useState } from "react";
@@ -40,7 +43,7 @@ export function Admistrador() {
   const [isActiveModalQrCode, setIsActiveModalQrCode] = useState("");
   const [isActiveModal, setIsActiveModal] = useState(false);
   const [isActiveModalUpdate, setIsActiveModalUpdate] = useState(false);
-  const { data, setModify, loadingAnimaçao, dataEvento } = useContext(UserContext);
+  const { data, setModify, loadingAnimaçao } = useContext(UserContext);
   const [numberQrCode, setNumberQrCode] = useState(0);
   const [img, setImg] = useState("");
   const [amountBatch, setAmountBatch] = useState(0);
@@ -54,8 +57,20 @@ export function Admistrador() {
   const [arry, setArry] = useState([]);
 
   const festa = window.localStorage.getItem("evento")
-
+  const [dataEvento, setDataEvento] = useState([]);
   let count1 = 0;
+
+  useEffect(() => {
+    async function getIngressos() {
+      const usersCollectionRef = collection(db, festa);
+      const order = query(usersCollectionRef, orderBy("count", "asc"));
+      const querySnapshot = await getDocs(order);
+      //const order = query(querySnapshot, orderBy("count", "asc"));
+      setDataEvento(querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    }
+    setModify(false);
+    getIngressos();
+  }, []);
 
   function handleOpenModal() {
     setIsActiveModal(true);
