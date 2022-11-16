@@ -30,7 +30,7 @@ export function Login() {
         const user = userCredential.user;
         if (user) {
           window.localStorage.setItem("login", true);
-          navigate("/dashboard");
+          navigate("/evento");
           setLogin(false);
         }
         // ...

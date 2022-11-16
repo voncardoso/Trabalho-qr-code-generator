@@ -1,13 +1,9 @@
 import { db } from "../../Config/config";
 import { useContext, useEffect, useState } from "react";
 import {
-  CheckCircle,
-  Checks,
   NotePencil,
   Trash,
   QrCode,
-  CaretDoubleRight,
-  CaretDoubleLeft,
 } from "phosphor-react";
 import { Container } from "./style";
 import { Header } from "../../components/Header";

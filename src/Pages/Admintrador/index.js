@@ -40,7 +40,7 @@ export function Admistrador() {
   const [isActiveModalQrCode, setIsActiveModalQrCode] = useState("");
   const [isActiveModal, setIsActiveModal] = useState(false);
   const [isActiveModalUpdate, setIsActiveModalUpdate] = useState(false);
-  const { data, setModify, loadingAnimaçao } = useContext(UserContext);
+  const { data, setModify, loadingAnimaçao, dataEvento } = useContext(UserContext);
   const [numberQrCode, setNumberQrCode] = useState(0);
   const [img, setImg] = useState("");
   const [amountBatch, setAmountBatch] = useState(0);
@@ -52,6 +52,8 @@ export function Admistrador() {
   // escolher qual pagina
   const [currentPage, setCurrentPerPage] = useState(0);
   const [arry, setArry] = useState([]);
+
+  const festa = window.localStorage.getItem("evento")
 
   let count1 = 0;
 
@@ -83,11 +85,11 @@ export function Admistrador() {
 
   async function handleSubmitBatch(event) {
     event.preventDefault();
-    if (data.length === 0) {
+    if (dataEvento.length === 0) {
       count1 = 1;
     }
-    if (data.length > 0) {
-      await data.map((item, index) => {
+    if (dataEvento.length > 0) {
+      await dataEvento.map((item, index) => {
         count1 = +item.count + 1;
       });
     }
@@ -110,7 +112,7 @@ export function Admistrador() {
       );
 
       try {
-        const docRef = await addDoc(collection(db, "tickets"), {
+        const docRef = await addDoc(collection(db, festa), {
           money: money,
           type: type,
           count: +count1,
@@ -131,13 +133,13 @@ export function Admistrador() {
     let response = window.confirm("Certeza que deseja excluir o item ?");
 
     if (response === true) {
-      await deleteDoc(doc(db, "tickets", id));
+      await deleteDoc(doc(db, festa, id));
       setModify(true);
     }
   }
 
-  if (data) {
-    data.map((rodovia) => {
+  if (dataEvento) {
+    dataEvento.map((rodovia) => {
       data1.push(rodovia);
     });
   }
@@ -153,10 +155,10 @@ export function Admistrador() {
 
   // filtro de pesdquisa
   useEffect(() => {
-    if (data) {
-      if (data.length > 0) {
+    if (dataEvento) {
+      if (dataEvento.length > 0) {
         setFilteredRoad(
-          data.filter((item) => item.count.toString().includes(search))
+          dataEvento.filter((item) => item.count.toString().includes(search))
         );
       }
     }
@@ -164,7 +166,7 @@ export function Admistrador() {
 
   function valueTotal() {
     let money = [];
-    data.map((item) => {
+    dataEvento.map((item) => {
       money.push(+item.money);
     });
     const total = money.reduce((acc, item) => {
@@ -180,7 +182,7 @@ export function Admistrador() {
   function usedTickets() {
     let useed = 0;
 
-    data.map((item) => {
+    dataEvento.map((item) => {
       if (item.active === true) {
         useed++;
       }
@@ -206,7 +208,7 @@ export function Admistrador() {
     } else {
       ativo = false;
     }
-    const washingtonRef = doc(db, "tickets", itemId);
+    const washingtonRef = doc(db, festa, itemId);
 
     await updateDoc(washingtonRef, {
       active: ativo,
@@ -232,7 +234,7 @@ export function Admistrador() {
                     <span>Vendidos</span>
                     <CheckCircle size={25} color={"var(--green-300)"} />
                   </div>
-                  <strong>{data.length}</strong>
+                  <strong>{dataEvento.length}</strong>
                 </li>
                 <li>
                   <div>

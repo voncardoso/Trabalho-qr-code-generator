@@ -12,6 +12,7 @@ import { getFirestore } from "firebase/firestore";
 import { QRcode1 } from "./Pages/QRcode1";
 import { User } from "./Pages/User/User";
 import { Register } from "./Pages/Register";
+import { CriarEvento } from "./Pages/CriarEvento";
 
 function App() {
   firebase.initializeApp(firebaseConfig);
@@ -30,6 +31,14 @@ function App() {
               element={
                 <ProtectedRouter>
                   <Dashboard />
+                </ProtectedRouter>
+              }
+            />
+            <Route
+              path="/evento"
+              element={
+                <ProtectedRouter>
+                  <CriarEvento />
                 </ProtectedRouter>
               }
             />

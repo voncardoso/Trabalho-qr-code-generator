@@ -81,6 +81,9 @@ export function Header() {
         )}
         {styleDashboard ? <h2>Dashboard</h2> : <h2>Administrador</h2>}
         <div>
+            <Link className="isActive" to="/evento">
+              Evento
+            </Link>
           {styleDashboard ? (
             <Link className="isActive" to="/dashboard">
               Dashboard

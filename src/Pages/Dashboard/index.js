@@ -13,7 +13,7 @@ import { doc, updateDoc } from "firebase/firestore";
 import { LoadingAnimacao } from "../../components/Loadign/loading";
 
 export function Dashboard() {
-  const { data, setModify, loadingAnimaçao } = useContext(UserContext);
+  const { data, setModify, loadingAnimaçao, dataEvento } = useContext(UserContext);
   const [search, setSearch] = useState("");
   const [filteredRoad, setFilteredRoad] = useState([]);
   let data1 = [];
@@ -22,9 +22,9 @@ export function Dashboard() {
   // escolher qual pagina
   const [currentPage, setCurrentPerPage] = useState(0);
   const [loading, setLoading] = useState(false);
-
-  if (data) {
-    data.map((rodovia) => {
+  console.log(dataEvento)
+  if (dataEvento) {
+    dataEvento.map((rodovia) => {
       data1.push(rodovia);
     });
   }
@@ -53,10 +53,10 @@ export function Dashboard() {
 
   // filtro de pesdquisa
   useEffect(() => {
-    if (data) {
-      if (data.length > 0) {
+    if (dataEvento) {
+      if (dataEvento.length > 0) {
         setFilteredRoad(
-          data.filter((item) => item.count.toString().includes(search))
+          dataEvento.filter((item) => item.count.toString().includes(search))
         );
       }
     }
@@ -64,7 +64,7 @@ export function Dashboard() {
 
   function usedTickets() {
     let useed = 0;
-    data.map((item) => {
+    dataEvento.map((item) => {
       if (item.active === true) {
         useed++;
       }
@@ -76,7 +76,7 @@ export function Dashboard() {
   function notUsedTickets() {
     let notUsed = 0;
 
-    data.map((item) => {
+    dataEvento.map((item) => {
       if (item.active === false) {
         notUsed++;
       }
@@ -113,7 +113,7 @@ export function Dashboard() {
                   <div>
                     <span>Total de Ingressos</span>
                   </div>
-                  <strong>{data.length}</strong>
+                  <strong>{dataEvento.length}</strong>
                 </li>
               </ul>
             </header>
