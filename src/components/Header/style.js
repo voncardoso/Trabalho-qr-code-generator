@@ -95,7 +95,7 @@ export const Container = styled.header`
 
   @media (max-width: 823px) {
     padding: 0px 0px;
-    height: 170px;
+   // height: 170px;
 
     nav {
       padding: 20px 10px;

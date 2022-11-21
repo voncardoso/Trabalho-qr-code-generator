@@ -5,6 +5,21 @@ export const Container = styled.section`
   width: 100%;
   margin: 0 auto;
   padding: 0px 80px;
+  h1{
+    position: relative;
+    top: -100px;
+    text-align: center;
+    font-size: 2rem;
+  }
+  h2{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #9baebf;
+    margin-top: 50px;
+    
+  }
   header {
     ul {
       position: relative;

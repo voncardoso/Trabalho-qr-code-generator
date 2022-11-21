@@ -5,6 +5,12 @@ export const Container = styled.section`
   width: 100%;
   margin: 0 auto;
   padding: 0px 80px;
+  h1{
+    position: relative;
+    top: -100px;
+    text-align: center;
+    font-size: 2rem;
+  }
   header {
     ul {
       position: relative;

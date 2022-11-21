@@ -37,6 +37,7 @@ export const Container = styled.section`
                         flex-direction: column;
                         justify-content: center;
                         align-items: center;
+                    
 
                         img{
                                 width: 100%;
@@ -47,5 +48,6 @@ export const Container = styled.section`
                                 padding: 5px 0px 10px;
                         }
                 }
+
         }
 `;

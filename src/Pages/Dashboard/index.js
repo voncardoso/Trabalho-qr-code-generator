@@ -25,6 +25,7 @@ export function Dashboard() {
   const [loading, setLoading] = useState(false);
 
   const festa = window.localStorage.getItem("evento");
+
   useEffect(() => {
     async function getIngressos() {
       const usersCollectionRef = collection(db, festa);
@@ -99,6 +100,8 @@ export function Dashboard() {
     return notUsed;
   }
 
+
+
   return (
     <>
       {loadingAnimaçao ? (
@@ -107,6 +110,7 @@ export function Dashboard() {
         <>
           <Header />
           <Container>
+            <h1>{festa}</h1>
             <header>
               <ul>
                 <li>
@@ -131,7 +135,6 @@ export function Dashboard() {
                 </li>
               </ul>
             </header>
-
             <span className="inputHerader">
               <input
                 type="search"
@@ -143,6 +146,8 @@ export function Dashboard() {
               <a href="/qrcode">Qr-code</a>
             </span>
 
+            {data1.length === 0 ? 
+            <h2>Não Possui Ingressos</h2> :  
             <table>
               <thead>
                 <tr>
@@ -152,7 +157,6 @@ export function Dashboard() {
                   <th className="acoes">Ações</th>
                 </tr>
               </thead>
-
               <tbody>
                 {search.length > 0
                   ? filteredRoad.map((item) => {
@@ -227,8 +231,10 @@ export function Dashboard() {
                       );
                     })}
               </tbody>
-            </table>
-
+            </table>}
+            
+            {data1.length === 0 ? "" :
+            <>
             {search > 0 ? (
               ""
             ) : (
@@ -292,7 +298,10 @@ export function Dashboard() {
                 </span>
               </div>
             )}
+            </>
+          }
           </Container>
+
           <Mobali>
             {search.length > 0
               ? filteredRoad.map((item) => {
@@ -379,7 +388,10 @@ export function Dashboard() {
                     </ul>
                   );
                 })}
-            {search > 0 ? (
+
+            {data1.length === 0 ? "" : 
+            <>
+               {search > 0 ? (
               ""
             ) : (
               <div className="paginacaoMobile">
@@ -442,6 +454,7 @@ export function Dashboard() {
                 </span>
               </div>
             )}
+            </>}
           </Mobali>
         </>
       )}

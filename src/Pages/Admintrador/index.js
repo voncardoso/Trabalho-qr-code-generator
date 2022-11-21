@@ -242,6 +242,7 @@ export function Admistrador() {
         <>
           <Header />
           <Container>
+          <h1>{festa}</h1>
             <header>
               <ul>
                 <li>

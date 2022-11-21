@@ -87,15 +87,17 @@ export function CriarEvento(){
                         <p>Adicionar Evento</p>
                     </button>
                     {data.map((item) =>{
+                      if(item.user === idUser){
                         return(
-                        <Link to={`/dashboard`} onClick={(() =>{
-                            window.localStorage.setItem("evento", item.titulo)
-                        })}>
-                            <img src={fotoEvento} alt="" />
-                            <p>{item.titulo}</p>
-                            <p>{item.date}</p>
-                        </Link>
-                        )
+                          <Link to={`/dashboard`} onClick={(() =>{
+                              window.localStorage.setItem("evento", item.titulo)
+                          })}>
+                              <img src={fotoEvento} alt="" />
+                              <p>{item.titulo}</p>
+                              <p>{item.date}</p>
+                          </Link>
+                          )
+                      }
                     })}
                 </div>
             </Container>

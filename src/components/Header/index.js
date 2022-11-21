@@ -12,6 +12,7 @@ export function Header() {
   const [styleAdministrador, setStyleAdministrador] = useState(false);
   const [styleDashboard, setStyleDashboard] = useState(false);
   const [styleUser, setStyleUser] = useState(false);
+  const [styleEvento, setStyleEvento] = useState(false);
   const [isActiveMenuMobilemenuMobile, setIsActiveMenuMobile] =
     useState("none");
   const [isActiveButtonMobile, setIisActiveButtonMobile] = useState(false);
@@ -27,6 +28,9 @@ export function Header() {
       }
       if (pathname === "/user") {
         setStyleUser(true);
+      }
+      if (pathname === "/evento") {
+        setStyleEvento(true);
       }
     }
     routeStyle();
@@ -79,26 +83,35 @@ export function Header() {
             <List size={32} color={"var(--blue-400)"} />
           </button>
         )}
-        {styleDashboard ? <h2>Dashboard</h2> : <h2>Administrador</h2>}
+        {styleEvento ? <h2>Evento</h2> : <>{styleDashboard ? <h2>Dashboard</h2> : <h2>Administrador</h2> }</>}
+        
         <div>
+          {styleEvento ? (
             <Link className="isActive" to="/evento">
-              Evento
-            </Link>
-          {styleDashboard ? (
-            <Link className="isActive" to="/dashboard">
-              Dashboard
-            </Link>
-          ) : (
-            <Link to="/dashboard">Dashboard</Link>
-          )}
+              Eventos
+            </Link>) : (<Link to="/evento">
+              Eventos
+            </Link>)
+          }
 
-          {styleAdministrador ? (
-            <Link className="isActive" to="/administrador">
-              Administrador
-            </Link>
-          ) : (
-            <Link to="/administrador">Administrador</Link>
-          )}
+          {styleEvento ? "" : (<>          
+            {styleDashboard ? (
+              <Link className="isActive" to="/dashboard">
+                Dashboard
+              </Link>
+            ) : (
+              <Link to="/dashboard">Dashboard</Link>
+            )}
+
+            {styleAdministrador ? (
+              <Link className="isActive" to="/administrador">
+                Administrador
+              </Link>
+            ) : (
+              <Link to="/administrador">Administrador</Link>
+            )}</>)
+          }
+
 
           <button onClick={Logout}>
             <p>Sair</p>
@@ -123,23 +136,34 @@ export function Header() {
           <nav>
             <ul style={{ display: isActiveMenuMobilemenuMobile }}>
               <li>
-                {styleDashboard ? (
-                  <Link className="isActive" to="/dashboard">
-                    Dashboard
-                  </Link>
-                ) : (
-                  <Link to="/dashboard">Dashboard</Link>
-                )}
+                {styleEvento ? (
+                  <Link className="isActive" to="/evento">
+                    Eventos
+                  </Link>) : (<Link to="/evento">
+                    Eventos
+                </Link>)
+                }
               </li>
-              <li>
-                {styleAdministrador ? (
-                  <Link className="isActive" to="/administrador">
-                    Administrador
-                  </Link>
-                ) : (
-                  <Link to="/administrador">Administrador</Link>
-                )}
-              </li>
+              {styleEvento ? "" : (<>              
+                  <li>
+                    {styleDashboard ? (
+                      <Link className="isActive" to="/dashboard">
+                        Dashboard
+                      </Link>
+                    ) : (
+                      <Link to="/dashboard">Dashboard</Link>
+                    )}
+                  </li>
+                  <li>
+                    {styleAdministrador ? (
+                      <Link className="isActive" to="/administrador">
+                        Administrador
+                      </Link>
+                    ) : (
+                      <Link to="/administrador">Administrador</Link>
+                    )}
+                  </li>
+              </>)}
               <li>
                 {" "}
                 <button onClick={Logout}>
