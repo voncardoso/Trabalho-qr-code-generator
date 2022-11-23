@@ -53,7 +53,7 @@ export function QRcode1() {
     });
 
     var veryfyExisteArray = veryfyTicktesConfirm.filter(
-      (elem, index, rr) => elem.uid === +dataQrcode
+      (elem, index, rr) => elem.uid === dataQrcode
     );
 
     if (veryfyExisteArray.length === 0) {
