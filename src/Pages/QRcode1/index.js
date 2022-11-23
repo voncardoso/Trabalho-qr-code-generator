@@ -40,20 +40,22 @@ export function QRcode1() {
     }
 
     let veryfyTicktesConfirm = dataEvento.filter((item) =>
-      item.count.toString().includes(+dataQrcode)
+      item.count.toString().includes(dataQrcode)
     );
 
+
+
     veryfyTicktesConfirm.map((item) => {
-      if (item.count === +dataQrcode && item.active === false) {
+      if (item.uid === dataQrcode && item.active === false) {
         verifyQrCode(item.id);
-      } else if (item.count === +dataQrcode && item.active === true) {
+      } else if (item.uid === dataQrcode && item.active === true) {
         ticketsExistes();
       } else {
       }
     });
 
     var veryfyExisteArray = veryfyTicktesConfirm.filter(
-      (elem, index, rr) => elem.count === +dataQrcode
+      (elem, index, rr) => elem.uid === dataQrcode
     );
 
     if (veryfyExisteArray.length === 0) {

@@ -23,6 +23,7 @@ import { db } from "../../Config/config";
 import { useContext, useEffect, useState } from "react";
 import QRCodeLink from "qrcode";
 import { UserContext } from "../../Context/useContext";
+import uuid from 'react-uuid';
 
 // qr-code
 import Modal from "react-modal";
@@ -137,6 +138,7 @@ export function Admistrador() {
           type: type,
           count: +count1,
           active: false,
+          uid: uuid()
         //  qrcode: imgQrCode,
         });
 
@@ -345,7 +347,7 @@ export function Admistrador() {
                               <li
                                 onClick={() => {
                                   console.log("click")
-                                  geradorQRCODE(item.count)
+                                  geradorQRCODE(item.uid)
                                 }}
                               >
                                 <QrCode size={25} />
@@ -401,8 +403,8 @@ export function Admistrador() {
                               <li
                                 onClick={() => {
                                   console.log("click")
-                                  geradorQRCODE(item.count)
-                                }}
+                                  geradorQRCODE(item.uid)
+                                }} 
                               >
                                 <QrCode size={25} />
                               </li>
