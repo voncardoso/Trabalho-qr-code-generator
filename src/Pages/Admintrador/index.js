@@ -81,6 +81,7 @@ export function Admistrador() {
   }
 
   function handleOpenModalQrCode(img1, numberQrcode) {
+    console.log(img1)
     setIsActiveModalQrCode(true);
     setImg(img1);
     setNumberQrCode(numberQrcode);
@@ -136,7 +137,7 @@ export function Admistrador() {
           type: type,
           count: +count1,
           active: false,
-          qrcode: imgQrCode,
+        //  qrcode: imgQrCode,
         });
 
         setModify(true);
@@ -151,7 +152,25 @@ export function Admistrador() {
 
 
   }
-  console.log("isactive",isActive)
+
+  function geradorQRCODE(count) {
+    console.log("gerador", count);
+    let imgQrCode = "";
+    let countString = count.toString();
+
+    QRCodeLink.toDataURL(
+      countString,
+      {
+        width: 400,
+        margin: 3,
+      },
+      function (err, url) {
+        imgQrCode = url;
+      }
+    );
+
+    handleOpenModalQrCode(imgQrCode, count);
+  }
   async function deleteTicktes(id) {
     let response = window.confirm("Certeza que deseja excluir o item ?");
 
@@ -325,10 +344,8 @@ export function Admistrador() {
                             <ul>
                               <li
                                 onClick={() => {
-                                  handleOpenModalQrCode(
-                                    item.qrcode,
-                                    item.count
-                                  );
+                                  console.log("click")
+                                  geradorQRCODE(item.count)
                                 }}
                               >
                                 <QrCode size={25} />
@@ -383,10 +400,8 @@ export function Admistrador() {
                             <ul>
                               <li
                                 onClick={() => {
-                                  handleOpenModalQrCode(
-                                    item.qrcode,
-                                    item.count
-                                  );
+                                  console.log("click")
+                                  geradorQRCODE(item.count)
                                 }}
                               >
                                 <QrCode size={25} />
