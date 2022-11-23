@@ -37,7 +37,7 @@ export function QRcode1() {
     }
 
     let veryfyTicktesConfirm = dataEvento.filter((item) =>
-      item.count.toString().includes(dataQrcode)
+      item.uid.toString().includes(dataQrcode)
     );
 
     veryfyTicktesConfirm.map((item) => {
