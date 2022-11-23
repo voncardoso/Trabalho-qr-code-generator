@@ -50,7 +50,7 @@ export function QRcode1() {
     });
 
     var veryfyExisteArray = veryfyTicktesConfirm.filter(
-      (elem, index, rr) => elem.count === +dataQrcode
+      (elem, index, rr) => elem.count === dataQrcode
     );
 
     if (veryfyExisteArray.length === 0) {
