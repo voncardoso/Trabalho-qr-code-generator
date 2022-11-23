@@ -14,8 +14,6 @@ export function QRcode1() {
   const [error, setError] = useState("none");
   const [errorStyle, setErrorStyle] = useState("");
   const [dataEvento, setDataEvento] = useState([]);
-  let  count = 0;
-
   const festa = window.localStorage.getItem("evento");
 
   useEffect(() => {
@@ -30,8 +28,6 @@ export function QRcode1() {
     getIngressos();
   }, []);
 
-  console.log(dataEvento)
-
   useEffect(() => {
     function VerifyNull() {
       if (dataQrcode === "No result") {
@@ -41,23 +37,21 @@ export function QRcode1() {
     }
 
     let veryfyTicktesConfirm = dataEvento.filter((item) =>
-      item.uid.toString().includes(dataQrcode)
+      item.count.toString().includes(+dataQrcode)
     );
 
     veryfyTicktesConfirm.map((item) => {
-      if (item.uid === dataQrcode && item.active === false) {
+      if (item.count === +dataQrcode && item.active === false) {
         verifyQrCode(item.id);
-      } else if (item.uid === dataQrcode && item.active === true) {
+      } else if (item.count === +dataQrcode && item.active === true) {
         ticketsExistes();
       } else {
       }
     });
 
     var veryfyExisteArray = veryfyTicktesConfirm.filter(
-      (elem, index, rr) => elem.uid === dataQrcode
+      (elem, index, rr) => elem.count === +dataQrcode
     );
-
-    count = veryfyExisteArray.count;
 
     if (veryfyExisteArray.length === 0) {
       setIsActiveQrCode("none");
@@ -110,7 +104,7 @@ export function QRcode1() {
 
       <div className="confirm" style={{ display: confirmQrCode }}>
         <CheckCircle color={errorStyle} size={80} />
-        <h3 style={{ color: errorStyle }}>Nº {count}</h3>
+        <h3 style={{ color: errorStyle }}>Nº {dataQrcode}</h3>
         <h3 style={{ color: errorStyle }}>{error}</h3>
         <button
           style={{ background: errorStyle, color: "#fff" }}
