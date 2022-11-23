@@ -14,6 +14,7 @@ export function QRcode1() {
   const [error, setError] = useState("none");
   const [errorStyle, setErrorStyle] = useState("");
   const [dataEvento, setDataEvento] = useState([]);
+  
   const festa = window.localStorage.getItem("evento");
 
   useEffect(() => {

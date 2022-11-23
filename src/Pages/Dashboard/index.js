@@ -36,7 +36,7 @@ export function Dashboard() {
     }
     setModify(false);
     getIngressos();
-  }, []);
+  }, [modify]);
 
   if (dataEvento) {
     dataEvento.map((rodovia) => {
@@ -54,7 +54,7 @@ export function Dashboard() {
   const currentItens = data1.slice(startIndex, endIndex);
 
   async function verifyTickets(id) {
-    const washingtonRef = doc(db, "tickets", id);
+    const washingtonRef = doc(db, festa, id);
     try {
       await updateDoc(washingtonRef, {
         active: true,

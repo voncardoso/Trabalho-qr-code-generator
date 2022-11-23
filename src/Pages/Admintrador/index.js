@@ -43,7 +43,7 @@ export function Admistrador() {
   const [isActiveModalQrCode, setIsActiveModalQrCode] = useState("");
   const [isActiveModal, setIsActiveModal] = useState(false);
   const [isActiveModalUpdate, setIsActiveModalUpdate] = useState(false);
-  const { data, setModify, loadingAnimaçao } = useContext(UserContext);
+  const { data, setModify, loadingAnimaçao, modify } = useContext(UserContext);
   const [numberQrCode, setNumberQrCode] = useState(0);
   const [img, setImg] = useState("");
   const [amountBatch, setAmountBatch] = useState(0);
@@ -70,7 +70,7 @@ export function Admistrador() {
     }
     setModify(false);
     getIngressos();
-  }, []);
+  }, [modify]);
 
   function handleOpenModal() {
     setIsActiveModal(true);
@@ -100,20 +100,24 @@ export function Admistrador() {
 
   async function handleSubmitBatch(event) {
     event.preventDefault();
+    let countString = count1.toString();
+    setIsActive(true);
+
     if (dataEvento.length === 0) {
       count1 = 1;
     }
+
     if (dataEvento.length > 0) {
       await dataEvento.map((item, index) => {
         count1 = +item.count + 1;
       });
     }
+
     for (let i = 1; i <= amountBatch; i++) {
       let imgQrCode = "";
       if (i > 1) {
         count1 = count1 + 1;
       }
-      let countString = count1.toString();
 
       QRCodeLink.toDataURL(
         countString,
@@ -138,12 +142,16 @@ export function Admistrador() {
         setModify(true);
         setMoney("");
         setType("");
+        setAmountBatch(0);
+        setIsActive(false)
       } catch (e) {
         console.error("Error adding document: ", e);
       }
     }
-  }
 
+
+  }
+  console.log("isactive",isActive)
   async function deleteTicktes(id) {
     let response = window.confirm("Certeza que deseja excluir o item ?");
 
@@ -695,9 +703,13 @@ export function Admistrador() {
                 value={amountBatch}
                 onChange={(event) => setAmountBatch(event.target.value)}
               />
-              <button type="" className="buttonAdd" onClick={handleSubmitBatch}>
+              {isActive ? <button disabled type="" className="buttonAdd">
+                Cadastrando...
+              </button> : <button type="" className="buttonAdd" onClick={handleSubmitBatch}>
                 Cadastrar
               </button>
+              }
+              
             </form>
           </Modal>
 
@@ -760,9 +772,16 @@ export function Admistrador() {
                   <option value={false}>Pendente</option>
                 </select>
               </label>
-              <button type="" className="buttonAdd">
-                Cadastrar
-              </button>
+
+              {isActive ? 
+                <button type="" >
+                  Atualizando...
+                </button> 
+              : 
+                <button type="" className="buttonAdd">
+                  Atualizar
+                </button>
+              }
             </form>
           </ModalUpdate>
         </>
