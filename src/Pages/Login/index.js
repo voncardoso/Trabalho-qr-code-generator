@@ -47,7 +47,7 @@ export function Login() {
     <Container>
       <form onSubmit={handleSubmit}>
         {error ? <div className="error">Email ou senha está inválido</div> : ""}
-        <h1>Login</h1>
+        <h1>Faça seu login</h1>
         <div>
           <label htmlFor="">Email</label>
           <input
@@ -87,7 +87,7 @@ export function Login() {
             Entrando...
           </button>
         ) : (
-          <button>Login</button>
+          <button>Entrar</button>
         )}
 
         <p>

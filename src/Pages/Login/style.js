@@ -34,7 +34,7 @@ export const Container = styled.section`
     }
 
     h1 {
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       font-size: 30px;
     }
 
