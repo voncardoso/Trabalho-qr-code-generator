@@ -1,15 +1,19 @@
 import styled from "styled-components";
 
 export const Container = styled.section`
-  max-width: 1400px;
+  max-width: 68rem;
   width: 100%;
   margin: 0 auto;
-  padding: 0px 80px;
+  padding: 0px 10px;
+  color: var(--gray-300);
   h1{
     position: relative;
     top: -100px;
     text-align: center;
     font-size: 2rem;
+    border-top: 1px solid var(--gray-300);
+      border-bottom: 1px solid var(--gray-300);
+      padding:10px ;
   }
   header {
     ul {
@@ -24,16 +28,15 @@ export const Container = styled.section`
         max-width: 400px;
         min-width: 300px;
         width: 100%;
-
         border-radius: 10px;
         padding: 20px 30px;
-        background: var(--white);
+        background: var(--gray-400);
         box-shadow: 4px 4px 5px 2px rgba(0, 0, 0, 25%);
         div {
           margin-bottom: 10px;
           display: flex;
           justify-content: space-between;
-
+          background: var(--gray-400);
           svg {
             height: 100%;
           }
@@ -41,6 +44,11 @@ export const Container = styled.section`
 
         strong {
           font-size: 2rem;
+          color: var(--gray-200);
+        }
+
+        span {
+          color: var(--gray-300)
         }
       }
     }
@@ -54,6 +62,10 @@ export const Container = styled.section`
       border-radius: 5px;
       font-size: 1rem;
       margin-bottom: 20px;
+      color: var(--gray-100);
+      background: var(--gray-500);
+      padding: 0.5rem;
+      border: none;
     }
 
     .buttonAdd {
@@ -81,10 +93,9 @@ export const Container = styled.section`
     margin-bottom: 10px;
     thead,
     th {
-      color: var(--text);
       text-align: center;
       font-weight: bold;
-      color: #9baebf;
+      color: var(--gray-300);
       padding: 10px 8px;
       font-size: 1.125rem;
       text-align: left;
@@ -103,12 +114,13 @@ export const Container = styled.section`
 
         td {
           font-size: 1.125rem;
-          background: var(--white);
+          background: var(--gray-500);
           max-width: 200px;
           width: 25%;
           padding: 10px 30px;
           border-bottom: 5px solid var(--background);
           height: 60px;
+          color: var(--gray-200);
           button {
             background: var(--blue-400);
             padding: 10px 20px;
@@ -163,17 +175,17 @@ export const Container = styled.section`
         align-self: center;
         width: 100%;
         height: 100%;
-        background: #fff;
+        background: var(--gray-400);
         border: none;
         border-radius: 50%;
         position: relative;
         margin: 0 auto;
         padding: 4px 8px;
         box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 25%);
-        color: var(--blue-400);
+        color: var(--gray-100);
       }
       button:hover {
-        background: var(--blue-400);
+        background: var(--gray-100);
         color: #fff;
       }
 
@@ -351,7 +363,7 @@ export const Mobali = styled.section`
   display: none;
   font-size: 1rem;
   ul {
-    background: var(--white);
+    background: var(--gray-400);
     margin-bottom: 10px;
     padding: 5px 10px;
     display: grid;
@@ -368,7 +380,7 @@ export const Mobali = styled.section`
       gap: 5px;
 
       p {
-        color: var(--text);
+        color: var(--gray-100);
       }
     }
 

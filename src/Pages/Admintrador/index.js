@@ -467,8 +467,8 @@ export function Admistrador() {
                         style={
                           index == currentPage
                             ? {
-                                background: "var(--blue-400)",
-                                color: "var(--white)",
+                                background: "var(--gray-100)",
+                                color: "var(--gray-400)",
                               }
                             : null
                         }
@@ -697,21 +697,14 @@ export function Admistrador() {
                 value={money}
                 onChange={(event) => setMoney(event.target.value)}
               />
-              <label className="nucleRegional" htmlFor="">
-                Tipo do ingresso
-                <select
-                  name="uf"
-                  id="uf"
+
+              <label htmlFor="">Tipo do ingresso</label>
+                <input 
+                  type="text" 
                   required
                   value={type}
                   onChange={(event) => setType(event.target.value)}
-                >
-                  <option value="">Ingresso</option>
-                  <option value="Pista">Pista</option>
-                  <option value="Área Vip">Área Vip</option>
-                  <option value="Camarote">Camarote</option>
-                </select>
-              </label>
+                />
 
               <label htmlFor="">Quantidade de Ingresso</label>
               <input
@@ -759,22 +752,13 @@ export function Admistrador() {
                 value={moneyUpdate}
                 onChange={(event) => setMoneyUpdate(event.target.value)}
               />
-              <label className="nucleRegional" htmlFor="">
-                Tipo do ingresso
-                <select
-                  name="uf"
-                  id="uf"
-                  required
+              <label htmlFor="">Tipo do ingresso</label>
+              <input 
+                type="text" 
+                required
                   value={typeUpdate}
                   onChange={(event) => setTypeUpdate(event.target.value)}
-                >
-                  <option value="">Ingresso</option>
-                  <option value="Pista">Pista</option>
-                  <option value="Área Vip">Área Vip</option>
-                  <option value="Camarote">Camarote</option>
-                </select>
-              </label>
-
+                />
               <label className="nucleRegional" htmlFor="">
                 Status
                 <select

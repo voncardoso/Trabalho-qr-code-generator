@@ -57,8 +57,8 @@ export function CriarEvento(){
             });
     
            // setModify(true);
-           // setMoney("");
-          //  setType("");
+            setTitle("")
+            setDate("")
           console.log("foi")
           } catch (e) {
             console.error("Error adding document: ", e);
@@ -83,7 +83,7 @@ export function CriarEvento(){
                         className="addEvento"
                         onClick={handleOpenModal}
                     >
-                        <PlusCircle size={80} color="#9BAEBF" weight="thin"/>
+                        <PlusCircle size={80} color="#808080" weight="thin"/>
                         <p>Adicionar Evento</p>
                     </button>
                     {data.map((item) =>{
@@ -109,7 +109,7 @@ export function CriarEvento(){
             className="react-modal-content"
           >
             <form onSubmit={handleSubmitEvent}>
-              <h3>Cadastro de ingresso</h3>
+              <h3>Cadastrar evento</h3>
               <label htmlFor="">Nome do evento</label>
               <input
                 required
@@ -123,13 +123,6 @@ export function CriarEvento(){
                 type="date"
                 value={date}
                 onChange={(event) => setDate(event.target.value)}
-              />
-
-              <label htmlFor="">Imagem</label>
-              <input
-                type="file"
-                value={img}
-                onChange={(event) => setImeg(event.target.value)}
               />
               <button type="submit" className="buttonAdd">
                 Cadastrar

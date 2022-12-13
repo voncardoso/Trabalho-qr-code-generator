@@ -268,8 +268,8 @@ export function Dashboard() {
                         style={
                           index == currentPage
                             ? {
-                                background: "var(--blue-400)",
-                                color: "var(--white)",
+                                background: "var(--gray-100)",
+                                color: "var(--gray-400)",
                               }
                             : null
                         }

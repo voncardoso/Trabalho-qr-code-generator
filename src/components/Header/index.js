@@ -67,7 +67,7 @@ export function Header() {
                 setIsActiveMenuMobile("none");
             }}
           >
-            <List size={32} />
+            <List size={32}/>
           </button>
         ) : (
           <button
@@ -80,7 +80,7 @@ export function Header() {
                 setIsActiveMenuMobile("none");
             }}
           >
-            <List size={32} color={"var(--blue-400)"} />
+            <List size={32} color={"var(--gray-100)"} />
           </button>
         )}
         {styleEvento ? <h2>Evento</h2> : <>{styleDashboard ? <h2>Dashboard</h2> : <h2>Administrador</h2> }</>}

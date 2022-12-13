@@ -8,6 +8,7 @@ export const Container = styled.section`
   justify-items: center;
   max-width: 100%;
   margin: 0 auto;
+  color: var(--gray-100);
 
   form {
     display: flex;
@@ -49,11 +50,15 @@ export const Container = styled.section`
         border: transparent;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         padding: 20px 10px;
+        padding: 1.5rem;
+        font-size: 1rem;
+        background: var(--gray-500);
+        color: var(--gray-100);
       }
 
       input:focus {
-        outline-color: var(--blue-100);
-        background-color: var(--white);
+        outline-color: rgb(245, 198, 28);
+        background-color: var(--gray-500);
       }
 
       .iconViewPasswor {
@@ -70,10 +75,11 @@ export const Container = styled.section`
       background: rgb(245, 198, 28);
       border-radius: 10px;
       border: transparent;
-      padding: 10px 0;
       color: white;
       font-size: 20px;
       font-weight: bold;
+      font-size: 1rem;
+      padding: 1rem; 
     }
   }
 
@@ -87,6 +93,10 @@ export const Container = styled.section`
       height: 100vh;
       object-fit: cover;
     }
+  }
+
+  a{
+    color: var(--gray-100);
   }
 
   @media (max-width: 890px) {

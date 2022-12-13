@@ -97,7 +97,7 @@ export function Register() {
           <button>Cadastrar</button>
         )}
         <p>
-          Voltar para o <Link to="/">login</Link>
+          Voltar para a tela de: <Link to="/">Login</Link>
         </p>
       </form>
     </Container>

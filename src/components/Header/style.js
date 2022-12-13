@@ -5,14 +5,14 @@ export const Container = styled.header`
   display: flex;
   flex-direction: column;
   width: 100%;
-  background: var(--blue-400);
+  background: var(--gray-700);
   nav {
-    max-width: 1600px;
+    max-width: 68rem;
     width: 100%;
     display: flex;
 
     margin: 0 auto;
-    padding: 20px 30px;
+    padding: 20px 0px;
     justify-content: space-between;
 
     h2 {
@@ -79,6 +79,7 @@ export const Container = styled.header`
 
     .button-menu-mobile {
       display: none;
+   
     }
   }
 
@@ -104,6 +105,7 @@ export const Container = styled.header`
 
       h2 {
         display: block;
+        color: var(--gray-100);
       }
 
       div {
@@ -146,7 +148,7 @@ export const Container = styled.header`
         width: 100%;
         height: 100vh;
 
-        background: rgb(0, 61, 167, 40%);
+        background: rgb(38, 38, 38, 60%);
         z-index: 2;
         nav {
           z-index: 20000;
@@ -155,7 +157,7 @@ export const Container = styled.header`
           flex-direction: column;
           position: fixed;
           top: 0px;
-          background: var(--blue-400);
+          background: var(--gray-500);
           height: 100vh;
 
           ul {
